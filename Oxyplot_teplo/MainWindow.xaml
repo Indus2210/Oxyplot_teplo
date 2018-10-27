@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Oxyplot_teplo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Теплопроводность Шагушин, Попова 1-46м" Height="350" Width="525">
+        Title="Теплопроводность Шагушин A.C., Попова Ю.И. 1-46м" Height="350" Width="525">
     <Grid>
         
     </Grid>
