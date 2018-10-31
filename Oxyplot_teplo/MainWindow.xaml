@@ -4,5 +4,6 @@
         Title="Теплопроводность Шагушин A.C., Попова Ю.И. 1-46м" Height="350" Width="525">
     <Grid>
         
+        <Button Content="расчитать" Click="Button_Click" Width="100" Height="100"/>
     </Grid>
 </Window>

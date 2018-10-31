@@ -99,6 +99,13 @@
       <Project>{76d6541a-b00e-44c0-bd95-92aebbceda94}</Project>
       <Name>TeploLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Teplo_WCF_Library\Teplo_WCF_Library.csproj">
+      <Project>{451edba9-587f-4ca2-a1df-70835d3a79d8}</Project>
+      <Name>Teplo_WCF_Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

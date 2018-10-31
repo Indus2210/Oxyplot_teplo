@@ -12,7 +12,7 @@ namespace Teplo_WCF_Library
     public interface ICulcService
     {
         [OperationContract]
-        OutputDate SumMatrixes(InputDate inputMatrixes);
+        OutputDate CulcTeplo(InputDate inputMatrixes);
 
     }
     [DataContract]
