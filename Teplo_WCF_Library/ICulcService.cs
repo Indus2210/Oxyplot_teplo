@@ -12,7 +12,10 @@ namespace Teplo_WCF_Library
     public interface ICulcService
     {
         [OperationContract]
-        OutputDate CulcTeplo(InputDate inputMatrixes);
+        OutputDate CulcTeploParal(InputDate inputMatrixes);
+
+        [OperationContract]
+        OutputDate CulcTeploPosl(InputDate inputMatrixes);
 
     }
     [DataContract]

@@ -28,9 +28,9 @@ namespace Oxyplot_teplo
 
         void Test() {
             int n = 10;
-            double time = 0.001;
-            double tau = 0.00001;
-            double h = 0.1;
+            double time = 0.1;
+            double tau = 0.0001;
+            double h = 1;
             double[,] u = new double[n, n];
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++)
@@ -40,16 +40,16 @@ namespace Oxyplot_teplo
             }
 
             for (int j = 0; j < n; j++)
-                u[0,j] = 200;
+                u[0,j] = 500;
 
             for (int i = 0; i < n; i++)
-                u[i,n - 1] = 200;
+                u[i,n - 1] = 500;
 
             for (int j = 0; j < n; j++)
-                u[n - 1,j] = 200;
+                u[n - 1,j] = 500;
 
             for (int i = 0; i < n; i++)
-                 u[i,0] = 200;
+                 u[i,0] = 500;
 
             CulcService calcservice = new CulcService();
             InputDate inputdate = new InputDate();
@@ -58,7 +58,7 @@ namespace Oxyplot_teplo
             inputdate.Tau = tau;
             inputdate.Time = time;
             inputdate.Mass_u = u;
-            outputDate = calcservice.CulcTeplo(inputdate);
+            outputDate = calcservice.CulcTeploParal(inputdate);
 
         }
 
