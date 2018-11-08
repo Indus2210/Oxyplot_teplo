@@ -1,8 +1,84 @@
 ﻿<Window x:Class="Oxyplot_teplo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Теплопроводность Шагушин A.C., Попова Ю.И. 1-46м" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Теплопроводность Шагушин A.C., Попова Ю.И. 1-46м" Height="801.557" Width="831.393">
+
+    <StackPanel>
+        <!--шапка-->
+        <TextBlock Text="Введите начальные значения" FontSize="20" FontWeight="Bold" Margin="260 10"/>
+
+        <!--Начальные условия-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column ="0" FontSize="12" Text="Шаг по сетке h"  Margin ="58 0 "/>
+            <TextBox Grid.Column ="0" Padding="1" Margin ="3 15 "/>
+
+            <TextBlock Grid.Column ="1" FontSize="12" Text="Шаг по времени tau"  Margin ="47 0 "/>
+            <TextBox Grid.Column ="1" Padding="1" Margin ="3 15 "/>
+
+            <TextBlock Grid.Column ="2" FontSize="12" Text="Максимальное время tmax"  Margin ="25 0 "/>
+            <TextBox Grid.Column ="2" Padding="1" Margin ="3 15 "/>
+
+            <CheckBox Grid.Column ="3" Content="Параллельный расчет" Margin ="31 15 "/>
+
+        </Grid>
+
+        <!--Верхнее граничное условие-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="460"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column ="0" FontSize="12" Text="Температура на верхней границе"  FlowDirection="RightToLeft"/>
+            <TextBox Grid.Column ="1" Padding="1" Margin="10 0 276 0"/>
+        </Grid>
+
+        <!--Боковые граничные условия-->
+        <Grid Height="400">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="455"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column ="0" FontSize="12" Text="Температура на левой границе" Margin="6 170 0 0"/>
+            <TextBox Grid.Column ="0" Padding="1" Margin="25 190"/>
+
+            <TextBlock Grid.Column ="2" FontSize="12" Text="Температура на правой границе" Margin="0 170 0 0"/>
+            <TextBox Grid.Column ="2" Padding="1" Margin="25 190"/>
+        </Grid>
+
+        <!--Нижнее граничное условие-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="460"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column ="0" FontSize="12" Text="Температура на нижней границе"  FlowDirection="RightToLeft"/>
+            <TextBox Grid.Column ="1" Padding="1" Margin="10 0 276 0"/>
+        </Grid>
+
+        <!--кнопка-->
+        <Button Width="250" Height="40" Content="Рассчет" Margin="20"/>
+        <!--результат-->
+        <TextBlock Text="Результат" FontSize="20" FontWeight="Bold" Margin="359 20"/>
+
+        <!--Нижнее граничное условие-->
+        <Grid Height="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column ="0" FontSize="12" Text="Время при последовательном расчете" />
+            <TextBox Grid.Column ="0" Padding="1" Margin="10 20"/>
+
+            <TextBlock Grid.Column ="1" FontSize="12" Text="Время при параллельном расчете" />
+            <TextBox Grid.Column ="1" Padding="1" Margin="10 20"/>
+        </Grid>
+    </StackPanel>
 </Window>
