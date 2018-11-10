@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Test_Teplo
 {
     [TestClass]
-    public class UnitTest1
+    public class Test_Teplo
     {
         [TestMethod]
         public void Test_Speed_run()

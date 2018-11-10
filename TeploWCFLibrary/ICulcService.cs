@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-namespace Teplo_WCF_Library
+namespace TeploWCFLibrary
 {
     // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени интерфейса "IService1" в коде и файле конфигурации.
     [ServiceContract]
@@ -21,13 +21,13 @@ namespace Teplo_WCF_Library
     [DataContract]
     public class InputDate
     {
-        double[][] mass_u;
+        double[,] mass_u;
         double time;
         double h;
         double tau;
 
         [DataMember]
-        public double[][] Mass_u
+        public double[,] Mass_u
         {
             get { return mass_u; }
             set { mass_u = value; }
@@ -59,10 +59,10 @@ namespace Teplo_WCF_Library
     [DataContract]
     public class OutputDate
     {
-        double[][] culc;
+        double[,] culc;
 
         [DataMember]
-        public double[][] Culc_Teplo
+        public double[,] Culc_Teplo
         {
             get { return culc; }
             set { culc = value; }
