@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace Oxyplot_teplo
 {
@@ -26,93 +27,106 @@ namespace Oxyplot_teplo
             InitializeComponent();
         }
 
-        /// Получить массив массивов (jagged array) из обычного двухмерного массива
-        /// </summary>
-        /// <typeparam name="T">Тип .NET</typeparam>
-        /// <param name="mArray">Двухмерный массив</param>
-        /// <returns>Массив массивов (Jagged array)</returns>
-        public static T[][] ToJagged<T>(T[,] mArray)
+
+        int n = 200;
+
+        double time;
+        double tau;
+        double h;
+        double[,] u;
+        Draw draw;
+        System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+        CulcService calcservice = new CulcService();
+        InputDate inputdate = new InputDate();
+        OutputDate outputDate = new OutputDate();
+        void StartCulc()
         {
-            var rows = mArray.GetLength(0);
-            var cols = mArray.GetLength(1);
-            var jArray = new T[rows][];
-            for (int i = 0; i < rows; i++)
+            time = 100;
+            tau = 0.1;
+            h = 1;
+            u = new double[n, n];
+            for (int i = 0; i < n; i++)
             {
-                jArray[i] = new T[cols];
-                for (int j = 0; j < cols; j++)
-                {
-                    jArray[i][j] = mArray[i, j];
-                }
-            }
-            return jArray;
-        }
-
-
-        public static T[,] ToMultiD<T>(T[][] jArray)
-        {
-            int i = jArray.Count();
-            int j = jArray.Select(x => x.Count()).Aggregate(0, (current, c) => (current > c) ? current : c);
-
-
-            var mArray = new T[i, j];
-
-            for (int ii = 0; ii < i; ii++)
-            {
-                for (int jj = 0; jj < j; jj++)
-                {
-                    mArray[ii, jj] = jArray[ii][jj];
-                }
-            }
-
-            return mArray;
-        }
-        
-
-        void Test() {
-            int n = 10;
-            double time = 0.1;
-            double tau = 0.0001;
-            double h = 1;
-            double[,] u = new double[n, n];
-            for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++)
                 {
-                    u[i, j] = 10;
-                } 
+                    u[i, j] =Convert.ToDouble(TempPlan.Text);
+                }
             }
 
             for (int j = 0; j < n; j++)
-                u[0,j] = 500;
+                u[0, j] = Convert.ToDouble(LeftGran.Text);
 
             for (int i = 0; i < n; i++)
-                u[i,n - 1] = 500;
+                u[i, n - 1] = Convert.ToDouble(BottomGran.Text);
 
             for (int j = 0; j < n; j++)
-                u[n - 1,j] = 500;
+                u[n - 1, j] = Convert.ToDouble(RightGran.Text);
 
             for (int i = 0; i < n; i++)
-                 u[i,0] = 500;
+                u[i, 0] = Convert.ToDouble(TopGran.Text);
 
-            CulcService calcservice = new CulcService();
-            InputDate inputdate = new InputDate();
-            OutputDate outputDate = new OutputDate();
-            inputdate.H = h;
-            inputdate.Tau = tau;
-            inputdate.Time = time;
-            inputdate.Mass_u = ToJagged(u);
             
-              //  inputdate.Mass_u = u;
-            outputDate = calcservice.CulcTeploPosl(inputdate);
+            timer.Tick += timer_Tick;
+            timer.Interval = new TimeSpan(5);
+            timer.Start();
 
-            u = ToMultiD(outputDate.Culc_Teplo);
-
-
-
+            draw = new Draw();
+            draw.StartDraw(canva);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        void timer_Tick(object sender, EventArgs e)
         {
             Test();
+        }
+
+        void Test()
+        {
+
+            var task = Task.Run(() => {
+                
+                inputdate.H = h;
+                inputdate.Tau = tau;
+                inputdate.Time = time;
+
+                inputdate.Mass_u = CulcService.ToJagged(u);
+                outputDate = calcservice.CulcTeploPosl(inputdate);
+                u = CulcService.ToMultiD(outputDate.Culc_Teplo);
+
+                
+            });
+            draw.Draw1(u);
+            canva.InvalidateVisual();
+            
+
+        }
+        bool flag = true;
+        private void Start_button_Click(object sender, RoutedEventArgs e)
+        {
+            StartCulc();
+            Test();
+            Start_button.IsEnabled = false;
+        }
+
+        private void Pause_button_Click(object sender, RoutedEventArgs e)
+        {
+            if(flag == false){
+                Pause_button.Content = "Пауза";
+                flag = true;
+                timer.Start();
+            }
+            else{
+                Pause_button.Content = "Продолжить";
+                flag = false;
+                timer.Stop();
+               
+            }
+            
+        }
+
+        private void Stop_button_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+            Start_button.IsEnabled = true;
         }
 
     }

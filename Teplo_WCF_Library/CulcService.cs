@@ -53,8 +53,6 @@ namespace Teplo_WCF_Library
 
             double[,] array1 = ToMultiD(inputDate.Mass_u);
 
-            /*int a = inputDate.Mass_u.GetLength(0);
-            int b = inputDate.Mass_u.GetLength(1);*/
             double h = inputDate.H;
             double time = inputDate.Time;
             double tau = inputDate.Tau;
@@ -75,8 +73,6 @@ namespace Teplo_WCF_Library
 
             double[,] array1 = ToMultiD(inputDate.Mass_u);
 
-            int a = inputDate.Mass_u.GetLength(0);
-            int b = inputDate.Mass_u.GetLength(1);
             double h = inputDate.H;
             double time = inputDate.Time;
             double tau = inputDate.Tau;
