@@ -20,7 +20,7 @@
             <TextBox Grid.Column ="0" Padding="1" Margin ="3 15 "/>
 
             <TextBlock Grid.Column ="1" FontSize="12" Text="Шаг по времени tau"  Margin ="47 0 "/>
-            <TextBox Grid.Column ="1" Padding="1" Margin ="3 15 "/>
+            <TextBox Grid.Column ="1" Padding="1" Margin ="3 15 " Text="0.01"/>
 
             <TextBlock Grid.Column ="2" FontSize="12" Text="Максимальное время tmax"  Margin ="25 0 "/>
             <TextBox Grid.Column ="2" Padding="1" Margin ="3 15 "/>
@@ -51,6 +51,10 @@
 
             <TextBlock Grid.Column ="2" FontSize="12" Text="Температура на правой границе" Margin="0 170 0 0"/>
             <TextBox Grid.Column ="2" Padding="1" Margin="25 190"/>
+            
+            <!--рисунок-->
+            <Canvas Grid.Column="1" x:Name="front_canvas">
+            </Canvas>
         </Grid>
 
         <!--Нижнее граничное условие-->
@@ -64,7 +68,7 @@
         </Grid>
 
         <!--кнопка-->
-        <Button Width="250" Height="40" Content="Рассчет" Margin="20"/>
+        <Button Width="250" Height="40" Content="Рассчет" Margin="20" Click="Button_Click"/>
         <!--результат-->
         <TextBlock Text="Результат" FontSize="20" FontWeight="Bold" Margin="359 20"/>
 
