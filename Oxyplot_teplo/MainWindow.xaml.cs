@@ -41,7 +41,7 @@ namespace Oxyplot_teplo
         OutputDate outputDate = new OutputDate();
         void StartCulc()
         {
-            time = 100;
+            time = 200;
             tau = 0.1;
             h = 1;
             u = new double[n, n];
@@ -95,7 +95,7 @@ namespace Oxyplot_teplo
                 
             });
             draw.Draw1(u);
-            canva.InvalidateVisual();
+            
             
 
         }
