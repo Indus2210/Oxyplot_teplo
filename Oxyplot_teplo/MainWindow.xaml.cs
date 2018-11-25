@@ -28,7 +28,7 @@ namespace Oxyplot_teplo
         }
 
 
-        int n = 200;
+        int n = 100;
 
         double time;
         double tau;
@@ -39,9 +39,12 @@ namespace Oxyplot_teplo
         CulcService calcservice = new CulcService();
         InputDate inputdate = new InputDate();
         OutputDate outputDate = new OutputDate();
+
+        
+
         void StartCulc()
         {
-            time = 200;
+            time = 10;
             tau = 0.1;
             h = 1;
             u = new double[n, n];
@@ -76,10 +79,10 @@ namespace Oxyplot_teplo
 
         void timer_Tick(object sender, EventArgs e)
         {
-            Test();
+            Culc();
         }
 
-        void Test()
+        void Culc()
         {
 
             var task = Task.Run(() => {
@@ -91,10 +94,12 @@ namespace Oxyplot_teplo
                 inputdate.Mass_u = CulcService.ToJagged(u);
                 outputDate = calcservice.CulcTeploPosl(inputdate);
                 u = CulcService.ToMultiD(outputDate.Culc_Teplo);
-
+                Dispatcher.Invoke(() => { 
+                draw.Draw1(u);
+                });
                 
             });
-            draw.Draw1(u);
+           
             
             
 
@@ -103,21 +108,21 @@ namespace Oxyplot_teplo
         private void Start_button_Click(object sender, RoutedEventArgs e)
         {
             StartCulc();
-            Test();
+            Culc();
             Start_button.IsEnabled = false;
         }
 
         private void Pause_button_Click(object sender, RoutedEventArgs e)
         {
-            if(flag == false){
+            if(timer.IsEnabled == true){
                 Pause_button.Content = "Пауза";
-                flag = true;
                 timer.Start();
             }
             else{
                 Pause_button.Content = "Продолжить";
-                flag = false;
                 timer.Stop();
+
+                
                
             }
             

@@ -18,11 +18,27 @@ namespace Oxyplot_teplo
 {
     public class Draw
     {
-        const int n = 200;
+        const int n = 100;
         public Rectangle[,] rects = new Rectangle[n, n];
         SolidColorBrush brush = new SolidColorBrush();
         double clr;
         Color color;
+
+        double Max(double[,] u)
+        {
+            double max = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (u[i, j] > max)
+                        max = u[i, j];
+                }
+            }
+
+            return max;
+        }
+
 
         public void StartDraw(Canvas canva) {
             for (int i = 0; i < n; i++)
@@ -37,29 +53,30 @@ namespace Oxyplot_teplo
             {
                 for (int j = 0; j < n; j++)
                 {
-                    rects[i, j].Width = 2;
-                    rects[i, j].Height = 2;
-                    Canvas.SetLeft(rects[i, j], i * 2);
-                    Canvas.SetTop(rects[i, j], j * 2);
+                    rects[i, j].Width = 4;
+                    rects[i, j].Height = 4;
+                    Canvas.SetLeft(rects[i, j], i * 4);
+                    Canvas.SetTop(rects[i, j], j * 4);
                     canva.Children.Add(rects[i, j]);
                 }
             }
-            canva.InvalidateVisual();
+       //     canva.InvalidateVisual();
         }
 
         public void Draw1(double[,] u) {
-            
-     
+
+            double max = Max(u);
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
                 {
-                    clr = (u[i, j] * 255) / 500;
+                    clr = (u[i, j] * 255) / max;
                     color = Color.FromRgb((byte)clr, 0, (byte)(255 - (int)clr));
                     brush = new SolidColorBrush(color);
                     rects[i, j].Fill = brush;
                 }
             }
+
         }
 
     }
