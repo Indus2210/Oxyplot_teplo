@@ -125,6 +125,10 @@
       <Project>{451edba9-587f-4ca2-a1df-70835d3a79d8}</Project>
       <Name>Teplo_WCF_Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WcfService\WcfService.csproj">
+      <Project>{656dfcf8-3538-4add-acb7-b0ba1d612a8c}</Project>
+      <Name>WcfService</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

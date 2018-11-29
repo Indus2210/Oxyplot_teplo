@@ -12,6 +12,12 @@ namespace Teplo_WCF_Library
     public interface ICulcService
     {
         [OperationContract]
+        OutputDate3D CulcTeploParal3D(InputDate3D inputMatrixes);
+
+        [OperationContract]
+        OutputDate3D CulcTeploPosl3D(InputDate3D inputMatrixes);
+
+        [OperationContract]
         OutputDate CulcTeploParal(InputDate inputMatrixes);
 
         [OperationContract]
@@ -57,12 +63,63 @@ namespace Teplo_WCF_Library
     }
 
     [DataContract]
+    public class InputDate3D
+    {
+        double[][][] mass_u;
+        double time;
+        double h;
+        double tau;
+
+        [DataMember]
+        public double[][][] Mass_u
+        {
+            get { return mass_u; }
+            set { mass_u = value; }
+        }
+
+        [DataMember]
+        public double Time
+        {
+            get { return time; }
+            set { time = value; }
+        }
+
+        [DataMember]
+        public double H
+        {
+            get { return h; }
+            set { h = value; }
+        }
+
+        [DataMember]
+        public double Tau
+        {
+            get { return tau; }
+            set { tau = value; }
+        }
+
+    }
+
+    [DataContract]
     public class OutputDate
     {
         double[][] culc;
 
         [DataMember]
         public double[][] Culc_Teplo
+        {
+            get { return culc; }
+            set { culc = value; }
+        }
+    }
+
+    [DataContract]
+    public class OutputDate3D
+    {
+        double[][][] culc;
+
+        [DataMember]
+        public double[][][] Culc_Teplo
         {
             get { return culc; }
             set { culc = value; }

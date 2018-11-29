@@ -1,5 +1,4 @@
-﻿using Teplo_WCF_Library;
-using System;
+﻿using Teplo_WCF_Library;using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +24,8 @@ namespace Oxyplot_teplo
         public MainWindow()
         {
             InitializeComponent();
+
+            
         }
 
 
@@ -104,7 +105,6 @@ namespace Oxyplot_teplo
             
 
         }
-        bool flag = true;
         private void Start_button_Click(object sender, RoutedEventArgs e)
         {
             StartCulc();
