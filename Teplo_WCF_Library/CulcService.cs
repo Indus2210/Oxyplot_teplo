@@ -40,10 +40,6 @@ namespace Teplo_WCF_Library
                 for (int j = 0; j < cols; j++)
                 {
                     jArray[i][j] = new T[wight];
-                    /*for (int k = 0; k < wight; k++)
-                    {
-                        jArray[i][j][k] = mArray[i, j, k];
-                    }*/
                 }
                 
             }
