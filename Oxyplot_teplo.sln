@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oxyplot_teplo", "Oxyplot_teplo\Oxyplot_teplo.csproj", "{3B9C5561-A048-4C3A-B860-14DDD966A006}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teplo_WCF_Library", "Teplo_WCF_Library\Teplo_WCF_Library.csproj", "{451EDBA9-587F-4CA2-A1DF-70835D3A79D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Teplo", "Test_Teplo\Test_Teplo.csproj", "{2CA46AA2-0E78-408A-BC23-2B9A713432F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{DCD429CE-C66C-4341-8CBA-9A0FF0CE62D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{2CA46AA2-0E78-408A-BC23-2B9A713432F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CA46AA2-0E78-408A-BC23-2B9A713432F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CA46AA2-0E78-408A-BC23-2B9A713432F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCD429CE-C66C-4341-8CBA-9A0FF0CE62D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCD429CE-C66C-4341-8CBA-9A0FF0CE62D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCD429CE-C66C-4341-8CBA-9A0FF0CE62D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCD429CE-C66C-4341-8CBA-9A0FF0CE62D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58ADCA74-3946-4330-A1CF-F3593C7B4ACB}
 	EndGlobalSection
 EndGlobal

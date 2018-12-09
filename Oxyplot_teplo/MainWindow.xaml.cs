@@ -42,7 +42,7 @@ namespace Oxyplot_teplo
 
         
 
-        void StartCulc()
+        void StartCulc(bool flag)
         {
             time = 10;
             tau = 0.1;
@@ -68,11 +68,13 @@ namespace Oxyplot_teplo
             for (int i = 0; i < n; i++)
                 u[i, 0] = Convert.ToDouble(TopGran.Text);
 
-            
-            timer.Tick += timer_Tick;
-            timer.Interval = new TimeSpan(5);
-            timer.Start();
-
+            if (flag)
+            {
+                timer.Tick += timer_Tick;
+                timer.Interval = new TimeSpan(5);
+                timer.Start();
+            }
+           
             draw = new Draw();
             draw.StartDraw(canva);
         }
@@ -84,30 +86,48 @@ namespace Oxyplot_teplo
 
         void Culc()
         {
+            if (CheckBoxParallel.IsChecked == true)
+            {
+                var task = Task.Run(() => {
 
-            var task = Task.Run(() => {
-                
-                inputdate.H = h;
-                inputdate.Tau = tau;
-                inputdate.Time = time;
+                    inputdate.H = h;
+                    inputdate.Tau = tau;
+                    inputdate.Time = time;
 
-                inputdate.Mass_u = CulcService.ToJagged(u);
-                outputDate = calcservice.CulcTeploPosl(inputdate);
-                u = CulcService.ToMultiD(outputDate.Culc_Teplo);
-                Dispatcher.Invoke(() => { 
-                draw.Draw1(u);
+                    inputdate.Mass_u = CulcService.ToJagged(u);
+                    outputDate = calcservice.CulcTeploParal(inputdate);
+                    u = CulcService.ToMultiD(outputDate.Culc_Teplo);
+                    Dispatcher.Invoke(() => {
+                        draw.Draw1(u);
+                    });
+
                 });
-                
-            });
-           
+            }
+            else
+            {
+                var task = Task.Run(() => {
+
+                    inputdate.H = h;
+                    inputdate.Tau = tau;
+                    inputdate.Time = time;
+
+                    inputdate.Mass_u = CulcService.ToJagged(u);
+                    outputDate = calcservice.CulcTeploPosl(inputdate);
+                    u = CulcService.ToMultiD(outputDate.Culc_Teplo);
+                    Dispatcher.Invoke(() => {
+                        draw.Draw1(u);
+                    });
+
+                });
+            }
             
-            
+                      
 
         }
         bool flag = true;
         private void Start_button_Click(object sender, RoutedEventArgs e)
         {
-            StartCulc();
+            StartCulc(flag);
             Culc();
             Start_button.IsEnabled = false;
         }
@@ -134,5 +154,14 @@ namespace Oxyplot_teplo
             Start_button.IsEnabled = true;
         }
 
+        private void Iter_button_Click(object sender, RoutedEventArgs e)
+        {
+            bool flag = false;
+            int kol = Convert.ToInt32(KolvoIter.Text);
+            StartCulc(false);
+
+            for (int i = 0; i < kol; i++)
+                Culc();
+        }
     }
 }
