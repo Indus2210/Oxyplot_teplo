@@ -1,4 +1,5 @@
-﻿using Teplo_WCF_Library;using System;
+﻿using Teplo_WCF_Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace Oxyplot_teplo
         {
             InitializeComponent();
 
-            
+
         }
 
 
@@ -41,7 +42,7 @@ namespace Oxyplot_teplo
         InputDate inputdate = new InputDate();
         OutputDate outputDate = new OutputDate();
 
-        
+
 
         void StartCulc()
         {
@@ -53,7 +54,7 @@ namespace Oxyplot_teplo
             {
                 for (int j = 0; j < n; j++)
                 {
-                    u[i, j] =Convert.ToDouble(TempPlan.Text);
+                    u[i, j] = Convert.ToDouble(TempPlan.Text);
                 }
             }
 
@@ -69,7 +70,7 @@ namespace Oxyplot_teplo
             for (int i = 0; i < n; i++)
                 u[i, 0] = Convert.ToDouble(TopGran.Text);
 
-            
+
             timer.Tick += timer_Tick;
             timer.Interval = new TimeSpan(5);
             timer.Start();
@@ -78,16 +79,22 @@ namespace Oxyplot_teplo
             draw.StartDraw(canva);
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        async void timer_Tick(object sender, EventArgs e)
         {
-            Culc();
+            timer.Stop();
+            await Culc();
+            timer.Start();
         }
 
-        void Culc()
+        async Task Culc()
         {
+            
 
-            var task = Task.Run(() => {
-                
+
+
+
+            await Task.Run(() =>
+            {
                 inputdate.H = h;
                 inputdate.Tau = tau;
                 inputdate.Time = time;
@@ -95,37 +102,30 @@ namespace Oxyplot_teplo
                 inputdate.Mass_u = CulcService.ToJagged(u);
                 outputDate = calcservice.CulcTeploPosl(inputdate);
                 u = CulcService.ToMultiD(outputDate.Culc_Teplo);
-                Dispatcher.Invoke(() => { 
-                draw.Draw1(u);
-                });
-                
-            });
-           
-            
-            
 
+            });
+            draw.draw(u);
         }
-        private void Start_button_Click(object sender, RoutedEventArgs e)
+        private async void Start_button_Click(object sender, RoutedEventArgs e)
         {
             StartCulc();
-            Culc();
+            await Culc();
             Start_button.IsEnabled = false;
         }
 
         private void Pause_button_Click(object sender, RoutedEventArgs e)
         {
-            if(timer.IsEnabled == true){
+            if (timer.IsEnabled == true)
+            {
                 Pause_button.Content = "Пауза";
                 timer.Start();
             }
-            else{
+            else
+            {
                 Pause_button.Content = "Продолжить";
                 timer.Stop();
-
-                
-               
             }
-            
+
         }
 
         private void Stop_button_Click(object sender, RoutedEventArgs e)

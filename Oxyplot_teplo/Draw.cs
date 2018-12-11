@@ -63,7 +63,7 @@ namespace Oxyplot_teplo
        //     canva.InvalidateVisual();
         }
 
-        public void Draw1(double[,] u) {
+        public void draw(double[,] u) {
 
             double max = Max(u);
             for (int i = 0; i < n; i++)

@@ -108,7 +108,8 @@ namespace Teplo_WCF_Library
             double h = inputDate.H;
             double time = inputDate.Time;
             double tau = inputDate.Tau;
-            Teplo teplo = new Teplo();
+            ILogger log = new NLogAdapter();
+            Teplo teplo = new Teplo(log);
 
             double [,] array2 = teplo.PoslCulc(array1, time, tau, h);
 
@@ -127,7 +128,7 @@ namespace Teplo_WCF_Library
             double tau = inputDate.Tau;
             Teplo teplo = new Teplo();
 
-            double[,,] array2 = teplo.ЗDPoslCulc(array1, time, tau, h);
+            double[,,] array2 = teplo.PoslCulс3D(array1, time, tau, h);
 
             mass_data.Culc_Teplo = ToJagged3D(array2);
             return mass_data;
