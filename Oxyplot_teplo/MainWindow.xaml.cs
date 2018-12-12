@@ -27,11 +27,10 @@ namespace Oxyplot_teplo
        // private ILogger _Logger;
         public MainWindow()
         {
-            
-            //ILogger log = new NLogAdapter();
-            //_Logger.Log("Запущена программа");
-            
             InitializeComponent();
+
+            ILogger log = new NLogAdapter();
+            log.Log("Запущена программа");
         }
 
        
