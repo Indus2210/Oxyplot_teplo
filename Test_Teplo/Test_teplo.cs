@@ -53,17 +53,11 @@ namespace Test_Teplo
             }
             Assert.IsFalse(flag, "Нет ускорения");
         }
-<<<<<<< HEAD
-
-=======
-           // Assert.AreEqual(timer_paral.ElapsedMilliseconds, timer_posl.ElapsedMilliseconds, 0.001);
->>>>>>> e3d4b4f347b513ca7830f23b87a76c1ae74ac269
 
         [TestMethod]
         public void Test_Rigth_Work_3D()
         {
             Teplo teplo = new Teplo();
-<<<<<<< HEAD
             int n = 5;
             double time = 10;
             double tau = 0.01;
@@ -86,39 +80,14 @@ namespace Test_Teplo
 
             unew = teplo.PoslCulс3D(u, time, tau, h);
 
-            bool flag = true;
-            if (unew[5, 5, 5] < unew[n - 1, n - 1, n - 1])
-=======
-            int n = 100;
-            double time = 1;
-            double tau = 0.001;
-            double h = 1;
-            double[,,] u = new double[n, n, n];
+            bool flag = false;
+            if (unew[0, 0, 0] < unew[n - 1, n - 1, n - 1])
 
-            for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < n; j++)
-                {
-                    for (int k = 0; k < n; k++)
-                        u[i, j, k] = 10;
-                }
-            }
-
-            for (int i = 0; i < n; i++)
-                u[i, 0, 0] = 500;
-
-            teplo.ЗDPoslCulc(u, time, tau, h);
-
-            bool flag = true;
-            if (u[50,50,50] < u[n - 1, n - 1, n - 1])
->>>>>>> e3d4b4f347b513ca7830f23b87a76c1ae74ac269
-            {
-                flag = false;
+                flag = true;
             }
             Assert.IsFalse(flag, "Считает не правильно");
         }
-
-
         
     }
 }
