@@ -88,6 +88,7 @@ namespace TeploLibrary
 
         public double[,] ParalCulc(double[,] u, double time, double tau, double h)
         {
+            _Logger.Log("Запущен паралельный рассчет расчет");
             int a = u.GetLength(0);
             int b = u.GetLength(1);
             double[,] unew = new double[a, b];
@@ -114,7 +115,10 @@ namespace TeploLibrary
                     }
                 }
             }
-
+            if (_Logger != null)
+            {
+                _Logger.Log("Закончен паралельный расчет");
+            }
             return u;
         }
 

@@ -40,10 +40,12 @@ namespace Oxyplot_teplo
         InputDate inputdate = new InputDate();
         OutputDate outputDate = new OutputDate();
 
-        
+
 
         void StartCulc(bool flag)
         {
+            Pause_button.Content = "Пауза";
+            Pause_button.IsEnabled = true;
             time = 10;
             tau = 0.1;
             h = 1;
@@ -52,7 +54,7 @@ namespace Oxyplot_teplo
             {
                 for (int j = 0; j < n; j++)
                 {
-                    u[i, j] =Convert.ToDouble(TempPlan.Text);
+                    u[i, j] = Convert.ToDouble(TempPlan.Text);
                 }
             }
 
@@ -70,25 +72,28 @@ namespace Oxyplot_teplo
 
             if (flag)
             {
-                timer.Tick += timer_Tick;
-                timer.Interval = new TimeSpan(5);
+                timer.Tick += Timer_Tick;
+                timer.Interval = new TimeSpan(0,0,1);
                 timer.Start();
             }
-           
+
             draw = new Draw();
             draw.StartDraw(canva);
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        async void Timer_Tick(object sender, EventArgs e)
         {
-            Culc();
+            timer.Stop();
+            await Culc();
+            timer.Start();
         }
 
-        void Culc()
+        async Task Culc()
         {
             if (CheckBoxParallel.IsChecked == true)
             {
-                var task = Task.Run(() => {
+                await Task.Run(() =>
+                {
 
                     inputdate.H = h;
                     inputdate.Tau = tau;
@@ -97,15 +102,13 @@ namespace Oxyplot_teplo
                     inputdate.Mass_u = CulcService.ToJagged(u);
                     outputDate = calcservice.CulcTeploParal(inputdate);
                     u = CulcService.ToMultiD(outputDate.Culc_Teplo);
-                    Dispatcher.Invoke(() => {
-                        draw.Draw1(u);
-                    });
-
                 });
+                draw.draw(u);
             }
             else
             {
-                var task = Task.Run(() => {
+                await Task.Run(() =>
+                {
 
                     inputdate.H = h;
                     inputdate.Tau = tau;
@@ -114,54 +117,50 @@ namespace Oxyplot_teplo
                     inputdate.Mass_u = CulcService.ToJagged(u);
                     outputDate = calcservice.CulcTeploPosl(inputdate);
                     u = CulcService.ToMultiD(outputDate.Culc_Teplo);
-                    Dispatcher.Invoke(() => {
-                        draw.Draw1(u);
-                    });
-
                 });
+                draw.draw(u);
             }
-            
-                      
+
+
 
         }
         bool flag = true;
-        private void Start_button_Click(object sender, RoutedEventArgs e)
+        async private void Start_button_Click(object sender, RoutedEventArgs e)
         {
             StartCulc(flag);
-            Culc();
+           await Culc();
             Start_button.IsEnabled = false;
         }
 
         private void Pause_button_Click(object sender, RoutedEventArgs e)
         {
-            if(timer.IsEnabled == true){
+            if (timer.IsEnabled == false)
+            {
                 Pause_button.Content = "Пауза";
                 timer.Start();
             }
-            else{
+            else
+            {
                 Pause_button.Content = "Продолжить";
                 timer.Stop();
-
-                
-               
             }
-            
+
         }
 
         private void Stop_button_Click(object sender, RoutedEventArgs e)
         {
+            Pause_button.IsEnabled = false;
             timer.Stop();
             Start_button.IsEnabled = true;
         }
 
-        private void Iter_button_Click(object sender, RoutedEventArgs e)
+        private async void Iter_button_Click(object sender, RoutedEventArgs e)
         {
-            bool flag = false;
             int kol = Convert.ToInt32(KolvoIter.Text);
             StartCulc(false);
 
             for (int i = 0; i < kol; i++)
-                Culc();
+                await Culc();
         }
     }
 }

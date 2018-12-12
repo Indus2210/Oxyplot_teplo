@@ -140,13 +140,13 @@ namespace Teplo_WCF_Library
         public OutputDate CulcTeploParal(InputDate inputDate)
         {
             OutputDate mass_data = new OutputDate();
-
+            ILogger log = new NLogAdapter();
             double[,] array1 = ToMultiD(inputDate.Mass_u);
 
             double h = inputDate.H;
             double time = inputDate.Time;
             double tau = inputDate.Tau;
-            Teplo teplo = new Teplo();
+            Teplo teplo = new Teplo(log);
             double[,] array2 = teplo.ParalCulc(array1, time, tau, h);
             mass_data.Culc_Teplo = ToJagged(array2);
             return mass_data;
@@ -155,13 +155,13 @@ namespace Teplo_WCF_Library
         public OutputDate3D CulcTeploParal3D(InputDate3D inputDate)
         {
             OutputDate3D mass_data = new OutputDate3D();
-
+            ILogger log = new NLogAdapter();
             double[,,] array1 = ToMulti3D(inputDate.Mass_u);
 
             double h = inputDate.H;
             double time = inputDate.Time;
             double tau = inputDate.Tau;
-            Teplo teplo = new Teplo();
+            Teplo teplo = new Teplo(log);
             double[,,] array2 = teplo.ЗDParalCulc(array1, time, tau, h);
             mass_data.Culc_Teplo = ToJagged3D(array2);
             return mass_data;
