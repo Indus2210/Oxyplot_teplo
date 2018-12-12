@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using Oxyplot_teplo.logger;
 
 namespace Oxyplot_teplo
 {
@@ -22,13 +23,21 @@ namespace Oxyplot_teplo
     /// </summary>
     public partial class MainWindow : Window
     {
+
+       // private ILogger _Logger;
         public MainWindow()
         {
+            
+            //ILogger log = new NLogAdapter();
+            //_Logger.Log("Запущена программа");
+            
             InitializeComponent();
         }
 
+       
 
         int n = 100;
+        
 
         double time;
         double tau;
