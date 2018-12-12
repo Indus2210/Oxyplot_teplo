@@ -47,6 +47,9 @@ namespace Test_Teplo
             timer_paral.Stop();
 
             bool flag = true;
+            //Проверка ускорения работы параллельной реализации над последовательной
+            //Если время выполнения параллельного алгоритма больше или равняется времени
+            //последовательной реализации, тоускорение отсутствует
             if (timer_paral.ElapsedMilliseconds >= timer_posl.ElapsedMilliseconds)
             {
                 flag = false;
