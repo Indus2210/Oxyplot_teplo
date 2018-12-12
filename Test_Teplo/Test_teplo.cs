@@ -59,9 +59,9 @@ namespace Test_Teplo
         public void Test_Rigth_Work_3D()
         {
             Teplo teplo = new Teplo();
-            int n = 100;
-            double time = 1;
-            double tau = 0.001;
+            int n = 10;
+            double time = 10;
+            double tau = 0.01;
             double h = 1;
             double[,,] u = new double[n, n, n];
 
@@ -75,19 +75,16 @@ namespace Test_Teplo
             }
 
             for (int i = 0; i < n; i++)
-                u[i, 0, 0] = 500;
+                u[i, 0, 0] = 50;
 
-            teplo.ЗDPoslCulc(u, time, tau, h);
+            u = teplo.ЗDPoslCulc(u, time, tau, h);
 
             bool flag = true;
-            if (u[50,50,50] < u[n - 1, n - 1, n - 1])
+            if (u[5,5,5] < u[n - 1, n - 1, n - 1])
             {
                 flag = false;
             }
             Assert.IsFalse(flag, "Считает не правильно");
-        }
-
-
-        
+        }        
     }
 }
