@@ -29,7 +29,7 @@ namespace Oxyplot_teplo
         }
 
         //ILogger log = new NLogAdapter();
-        int n = 50;
+        int n = 100;
 
         double time;
         double tau;
