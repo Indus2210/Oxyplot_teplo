@@ -18,8 +18,13 @@ namespace Oxyplot_teplo
 {
     public class Draw
     {
-        const int n = 30;
-        public Rectangle[,] rects = new Rectangle[n, n];
+        int n;
+        Rectangle[,] rects;
+        public Draw(int _n){
+            n = _n;
+            rects = new Rectangle[n, n];
+        }
+        
         SolidColorBrush brush = new SolidColorBrush();
         double clr;
         Color color;

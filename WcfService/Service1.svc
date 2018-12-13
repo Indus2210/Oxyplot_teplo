@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Teplo_WCF_Library.CulcService" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Teplo_WCF_Library.CulcService"%>

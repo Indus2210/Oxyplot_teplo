@@ -29,7 +29,7 @@ namespace Oxyplot_teplo
         }
 
         //ILogger log = new NLogAdapter();
-        int n = 30;
+        int n = 50;
 
         double time;
         double tau;
@@ -79,7 +79,7 @@ namespace Oxyplot_teplo
                 timer.Start();
             }
 
-            draw = new Draw();
+            draw = new Draw(n);
             draw.StartDraw(canva);
         }
 
@@ -189,7 +189,7 @@ namespace Oxyplot_teplo
             Start_button.IsEnabled = true;
         }
 
-        private async void Iter_button_Click(object sender, RoutedEventArgs e)
+        private void Iter_button_Click(object sender, RoutedEventArgs e)
         {
             int kol = Convert.ToInt32(KolvoIter.Text);
             StartCulc(false);
