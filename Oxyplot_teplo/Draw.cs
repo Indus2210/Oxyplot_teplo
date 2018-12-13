@@ -1,4 +1,4 @@
-﻿using Teplo_WCF_Library;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Oxyplot_teplo
 {
     public class Draw
     {
-        const int n = 100;
+        const int n = 30;
         public Rectangle[,] rects = new Rectangle[n, n];
         SolidColorBrush brush = new SolidColorBrush();
         double clr;
@@ -26,6 +26,7 @@ namespace Oxyplot_teplo
 
         double Max(double[,] u)
         {
+            //int n = u.GetLength(0);
             double max = 0;
             for (int i = 0; i < n; i++)
             {

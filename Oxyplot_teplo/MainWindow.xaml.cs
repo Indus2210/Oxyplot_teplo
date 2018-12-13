@@ -1,4 +1,4 @@
-﻿using Teplo_WCF_Library;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using Oxyplot_teplo.ServiceReference1;
 
 namespace Oxyplot_teplo
 {
@@ -27,8 +28,8 @@ namespace Oxyplot_teplo
             InitializeComponent();
         }
 
-
-        int n = 100;
+        //ILogger log = new NLogAdapter();
+        int n = 30;
 
         double time;
         double tau;
@@ -36,10 +37,10 @@ namespace Oxyplot_teplo
         double[,] u;
         Draw draw;
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-        CulcService calcservice = new CulcService();
+       
         InputDate inputdate = new InputDate();
         OutputDate outputDate = new OutputDate();
-
+        CulcServiceClient client = new CulcServiceClient();
 
 
         void StartCulc(bool flag)
@@ -57,7 +58,8 @@ namespace Oxyplot_teplo
                     u[i, j] = Convert.ToDouble(TempPlan.Text);
                 }
             }
-
+            //натификатор
+            //валидация
             for (int j = 0; j < n; j++)
                 u[0, j] = Convert.ToDouble(LeftGran.Text);
 
@@ -81,15 +83,48 @@ namespace Oxyplot_teplo
             draw.StartDraw(canva);
         }
 
-        async void Timer_Tick(object sender, EventArgs e)
+        void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
-            await Culc();
+            Culc();
             timer.Start();
         }
-
-        async Task Culc()
+        public static T[][] ToJagged<T>(T[,] mArray)
         {
+            var rows = mArray.GetLength(0);
+            var cols = mArray.GetLength(1);
+            var jArray = new T[rows][];
+            for (int i = 0; i < rows; i++)
+            {
+                jArray[i] = new T[cols];
+                for (int j = 0; j < cols; j++)
+                {
+                    jArray[i][j] = mArray[i, j];
+                }
+            }
+            return jArray;
+        }
+
+        public static T[,] ToMultiD<T>(T[][] jArray)
+        {
+            int i = jArray.Count();
+            int j = jArray.Select(x => x.Count()).Aggregate(0, (current, c) => (current > c) ? current : c);
+
+            var mArray = new T[i, j];
+
+            for (int ii = 0; ii < i; ii++)
+            {
+                for (int jj = 0; jj < j; jj++)
+                {
+                    mArray[ii, jj] = jArray[ii][jj];
+                }
+            }
+
+            return mArray;
+        }
+        async void Culc()
+        {
+            
             if (CheckBoxParallel.IsChecked == true)
             {
                 await Task.Run(() =>
@@ -99,9 +134,9 @@ namespace Oxyplot_teplo
                     inputdate.Tau = tau;
                     inputdate.Time = time;
 
-                    inputdate.Mass_u = CulcService.ToJagged(u);
-                    outputDate = calcservice.CulcTeploParal(inputdate);
-                    u = CulcService.ToMultiD(outputDate.Culc_Teplo);
+                    inputdate.Mass_u = ToJagged(u);
+                    outputDate = client.CulcTeploParal(inputdate);
+                    u = ToMultiD(outputDate.Culc_Teplo);
                 });
                 draw.draw(u);
             }
@@ -114,9 +149,9 @@ namespace Oxyplot_teplo
                     inputdate.Tau = tau;
                     inputdate.Time = time;
 
-                    inputdate.Mass_u = CulcService.ToJagged(u);
-                    outputDate = calcservice.CulcTeploPosl(inputdate);
-                    u = CulcService.ToMultiD(outputDate.Culc_Teplo);
+                    inputdate.Mass_u = ToJagged(u);
+                    outputDate = client.CulcTeploPosl(inputdate);
+                    u = ToMultiD(outputDate.Culc_Teplo);
                 });
                 draw.draw(u);
             }
@@ -125,10 +160,10 @@ namespace Oxyplot_teplo
 
         }
         bool flag = true;
-        async private void Start_button_Click(object sender, RoutedEventArgs e)
+        private void Start_button_Click(object sender, RoutedEventArgs e)
         {
             StartCulc(flag);
-           await Culc();
+           Culc();
             Start_button.IsEnabled = false;
         }
 
@@ -160,7 +195,7 @@ namespace Oxyplot_teplo
             StartCulc(false);
 
             for (int i = 0; i < kol; i++)
-                await Culc();
+                Culc();
         }
     }
 }

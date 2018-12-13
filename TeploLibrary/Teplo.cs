@@ -25,9 +25,95 @@ namespace TeploLibrary
             _Logger = logger;
         }
 
+        public static T[][] ToJagged<T>(T[,] mArray)
+        {
+            var rows = mArray.GetLength(0);
+            var cols = mArray.GetLength(1);
+            var jArray = new T[rows][];
+            for (int i = 0; i < rows; i++)
+            {
+                jArray[i] = new T[cols];
+                for (int j = 0; j < cols; j++)
+                {
+                    jArray[i][j] = mArray[i, j];
+                }
+            }
+            return jArray;
+        }
+        public static T[][][] ToJagged3D<T>(T[,,] mArray)
+        {
+            var rows = mArray.GetLength(0);
+            var cols = mArray.GetLength(1);
+            var wight = mArray.GetLength(2);
+            var jArray = new T[rows][][];
+            for (int i = 0; i < rows; i++)
+            {
+                jArray[i] = new T[cols][];
+                for (int j = 0; j < cols; j++)
+                {
+                    jArray[i][j] = new T[wight];
+                }
+
+            }
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    for (int k = 0; k < wight; k++)
+                    {
+                        jArray[i][j][k] = mArray[i, j, k];
+                    }
+                }
+
+            }
+
+            return jArray;
+        }
+
+        public static T[,] ToMultiD<T>(T[][] jArray)
+        {
+            int i = jArray.Count();
+            int j = jArray.Select(x => x.Count()).Aggregate(0, (current, c) => (current > c) ? current : c);
+
+            var mArray = new T[i, j];
+
+            for (int ii = 0; ii < i; ii++)
+            {
+                for (int jj = 0; jj < j; jj++)
+                {
+                    mArray[ii, jj] = jArray[ii][jj];
+                }
+            }
+
+            return mArray;
+        }
+
+        public static T[,,] ToMulti3D<T>(T[][][] jArray)
+        {
+            int i = jArray.Count();
+            int j = jArray.Select(x => x.Count()).Aggregate(0, (current, c) => (current > c) ? current : c);
+            int k = jArray[0][0].Length;
+
+            var mArray = new T[i, j, k];
+
+            for (int ii = 0; ii < i; ii++)
+            {
+                for (int jj = 0; jj < j; jj++)
+                {
+                    for (int kk = 0; kk < k; kk++)
+                    {
+                        mArray[ii, jj, kk] = jArray[ii][jj][kk];
+                    }
+                }
+            }
+
+            return mArray;
+        }
+
+
         public double[,] PoslCulc(double[,] u, double time, double tau, double h)
         {
-            _Logger.Log("Запущен последовательный расчет");
+            _Logger.Log("Запущен последовательный расчет ");
             int a = u.GetLength(0);
             int b = u.GetLength(1);
             double[,] unew = new double[a, b];

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oxyplot_teplo", "Oxyplot_teplo\Oxyplot_teplo.csproj", "{3B9C5561-A048-4C3A-B860-14DDD966A006}"
+	ProjectSection(ProjectDependencies) = postProject
+		{451EDBA9-587F-4CA2-A1DF-70835D3A79D8} = {451EDBA9-587F-4CA2-A1DF-70835D3A79D8}
+		{656DFCF8-3538-4ADD-ACB7-B0BA1D612A8C} = {656DFCF8-3538-4ADD-ACB7-B0BA1D612A8C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeploLibrary", "TeploLibrary\TeploLibrary.csproj", "{76D6541A-B00E-44C0-BD95-92AEBBCEDA94}"
 EndProject
@@ -42,5 +46,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B312975D-3D1A-44F7-9E28-6B56DAF0C3A1}
 	EndGlobalSection
 EndGlobal

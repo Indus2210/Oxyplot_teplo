@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fe1473cf-cf6a-4166-a04d-46515de75519" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c6479cc7-fa40-4fdd-863b-59beb1662b59" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Teplo_WCF_Library/CulcService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:51721/Service1.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="8df0c893-ab1a-48ac-9999-ebbfa33b2b40" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Teplo_WCF_Library/CulcService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="7737374d-d792-4325-893f-10f8cba53267" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Teplo_WCF_Library/CulcService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="a08a27ea-329b-4cf3-93ac-560ba8fad30a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Teplo_WCF_Library/CulcService/mex" />
-    <MetadataFile FileName="Teplo_WCF_Library.xsd" MetadataType="Schema" ID="34a885b8-9f5b-4831-bcd6-1ea76b1dff04" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Teplo_WCF_Library/CulcService/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="75950c10-7d9e-4397-bd5e-13aac322a29a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Teplo_WCF_Library/CulcService/mex" />
+    <MetadataFile FileName="CulcService.wsdl" MetadataType="Wsdl" ID="08d7be72-fb91-4d7d-9a69-dea0fbeb756c" SourceId="1" SourceUrl="http://localhost:51721/Service1.svc?wsdl" />
+    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="cdbed7be-f608-4643-82da-f7ef26b8002c" SourceId="1" SourceUrl="http://localhost:51721/Service1.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="9d8f021a-f9f4-4411-afe4-1619bcf08d19" SourceId="1" SourceUrl="http://localhost:51721/Service1.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="e2a98d9b-61f0-4c45-af52-1a3bac2c95a8" SourceId="1" SourceUrl="http://localhost:51721/Service1.svc?disco" />
+    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="8efc1b3c-c45f-47a4-892c-5d5de3bbf9ac" SourceId="1" SourceUrl="http://localhost:51721/Service1.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="1c519c8f-18cd-4774-914f-3996f9cd18a6" SourceId="1" SourceUrl="http://localhost:51721/Service1.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

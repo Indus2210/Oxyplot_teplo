@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oxyplot_teplo.ServiceReference1 {
+namespace WpfApp.ServiceReference1 {
     using System.Runtime.Serialization;
     using System;
     
@@ -294,37 +294,37 @@ namespace Oxyplot_teplo.ServiceReference1 {
     public interface ICulcService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICulcService/CulcTeploParal3D", ReplyAction="http://tempuri.org/ICulcService/CulcTeploParal3DResponse")]
-        Oxyplot_teplo.ServiceReference1.OutputDate3D CulcTeploParal3D(Oxyplot_teplo.ServiceReference1.InputDate3D inputMatrixes);
+        WpfApp.ServiceReference1.OutputDate3D CulcTeploParal3D(WpfApp.ServiceReference1.InputDate3D inputMatrixes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICulcService/CulcTeploParal3D", ReplyAction="http://tempuri.org/ICulcService/CulcTeploParal3DResponse")]
-        System.Threading.Tasks.Task<Oxyplot_teplo.ServiceReference1.OutputDate3D> CulcTeploParal3DAsync(Oxyplot_teplo.ServiceReference1.InputDate3D inputMatrixes);
+        System.Threading.Tasks.Task<WpfApp.ServiceReference1.OutputDate3D> CulcTeploParal3DAsync(WpfApp.ServiceReference1.InputDate3D inputMatrixes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICulcService/CulcTeploPosl3D", ReplyAction="http://tempuri.org/ICulcService/CulcTeploPosl3DResponse")]
-        Oxyplot_teplo.ServiceReference1.OutputDate3D CulcTeploPosl3D(Oxyplot_teplo.ServiceReference1.InputDate3D inputMatrixes);
+        WpfApp.ServiceReference1.OutputDate3D CulcTeploPosl3D(WpfApp.ServiceReference1.InputDate3D inputMatrixes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICulcService/CulcTeploPosl3D", ReplyAction="http://tempuri.org/ICulcService/CulcTeploPosl3DResponse")]
-        System.Threading.Tasks.Task<Oxyplot_teplo.ServiceReference1.OutputDate3D> CulcTeploPosl3DAsync(Oxyplot_teplo.ServiceReference1.InputDate3D inputMatrixes);
+        System.Threading.Tasks.Task<WpfApp.ServiceReference1.OutputDate3D> CulcTeploPosl3DAsync(WpfApp.ServiceReference1.InputDate3D inputMatrixes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICulcService/CulcTeploParal", ReplyAction="http://tempuri.org/ICulcService/CulcTeploParalResponse")]
-        Oxyplot_teplo.ServiceReference1.OutputDate CulcTeploParal(Oxyplot_teplo.ServiceReference1.InputDate inputMatrixes);
+        WpfApp.ServiceReference1.OutputDate CulcTeploParal(WpfApp.ServiceReference1.InputDate inputMatrixes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICulcService/CulcTeploParal", ReplyAction="http://tempuri.org/ICulcService/CulcTeploParalResponse")]
-        System.Threading.Tasks.Task<Oxyplot_teplo.ServiceReference1.OutputDate> CulcTeploParalAsync(Oxyplot_teplo.ServiceReference1.InputDate inputMatrixes);
+        System.Threading.Tasks.Task<WpfApp.ServiceReference1.OutputDate> CulcTeploParalAsync(WpfApp.ServiceReference1.InputDate inputMatrixes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICulcService/CulcTeploPosl", ReplyAction="http://tempuri.org/ICulcService/CulcTeploPoslResponse")]
-        Oxyplot_teplo.ServiceReference1.OutputDate CulcTeploPosl(Oxyplot_teplo.ServiceReference1.InputDate inputMatrixes);
+        WpfApp.ServiceReference1.OutputDate CulcTeploPosl(WpfApp.ServiceReference1.InputDate inputMatrixes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICulcService/CulcTeploPosl", ReplyAction="http://tempuri.org/ICulcService/CulcTeploPoslResponse")]
-        System.Threading.Tasks.Task<Oxyplot_teplo.ServiceReference1.OutputDate> CulcTeploPoslAsync(Oxyplot_teplo.ServiceReference1.InputDate inputMatrixes);
+        System.Threading.Tasks.Task<WpfApp.ServiceReference1.OutputDate> CulcTeploPoslAsync(WpfApp.ServiceReference1.InputDate inputMatrixes);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ICulcServiceChannel : Oxyplot_teplo.ServiceReference1.ICulcService, System.ServiceModel.IClientChannel {
+    public interface ICulcServiceChannel : WpfApp.ServiceReference1.ICulcService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CulcServiceClient : System.ServiceModel.ClientBase<Oxyplot_teplo.ServiceReference1.ICulcService>, Oxyplot_teplo.ServiceReference1.ICulcService {
+    public partial class CulcServiceClient : System.ServiceModel.ClientBase<WpfApp.ServiceReference1.ICulcService>, WpfApp.ServiceReference1.ICulcService {
         
         public CulcServiceClient() {
         }
@@ -345,35 +345,35 @@ namespace Oxyplot_teplo.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public Oxyplot_teplo.ServiceReference1.OutputDate3D CulcTeploParal3D(Oxyplot_teplo.ServiceReference1.InputDate3D inputMatrixes) {
+        public WpfApp.ServiceReference1.OutputDate3D CulcTeploParal3D(WpfApp.ServiceReference1.InputDate3D inputMatrixes) {
             return base.Channel.CulcTeploParal3D(inputMatrixes);
         }
         
-        public System.Threading.Tasks.Task<Oxyplot_teplo.ServiceReference1.OutputDate3D> CulcTeploParal3DAsync(Oxyplot_teplo.ServiceReference1.InputDate3D inputMatrixes) {
+        public System.Threading.Tasks.Task<WpfApp.ServiceReference1.OutputDate3D> CulcTeploParal3DAsync(WpfApp.ServiceReference1.InputDate3D inputMatrixes) {
             return base.Channel.CulcTeploParal3DAsync(inputMatrixes);
         }
         
-        public Oxyplot_teplo.ServiceReference1.OutputDate3D CulcTeploPosl3D(Oxyplot_teplo.ServiceReference1.InputDate3D inputMatrixes) {
+        public WpfApp.ServiceReference1.OutputDate3D CulcTeploPosl3D(WpfApp.ServiceReference1.InputDate3D inputMatrixes) {
             return base.Channel.CulcTeploPosl3D(inputMatrixes);
         }
         
-        public System.Threading.Tasks.Task<Oxyplot_teplo.ServiceReference1.OutputDate3D> CulcTeploPosl3DAsync(Oxyplot_teplo.ServiceReference1.InputDate3D inputMatrixes) {
+        public System.Threading.Tasks.Task<WpfApp.ServiceReference1.OutputDate3D> CulcTeploPosl3DAsync(WpfApp.ServiceReference1.InputDate3D inputMatrixes) {
             return base.Channel.CulcTeploPosl3DAsync(inputMatrixes);
         }
         
-        public Oxyplot_teplo.ServiceReference1.OutputDate CulcTeploParal(Oxyplot_teplo.ServiceReference1.InputDate inputMatrixes) {
+        public WpfApp.ServiceReference1.OutputDate CulcTeploParal(WpfApp.ServiceReference1.InputDate inputMatrixes) {
             return base.Channel.CulcTeploParal(inputMatrixes);
         }
         
-        public System.Threading.Tasks.Task<Oxyplot_teplo.ServiceReference1.OutputDate> CulcTeploParalAsync(Oxyplot_teplo.ServiceReference1.InputDate inputMatrixes) {
+        public System.Threading.Tasks.Task<WpfApp.ServiceReference1.OutputDate> CulcTeploParalAsync(WpfApp.ServiceReference1.InputDate inputMatrixes) {
             return base.Channel.CulcTeploParalAsync(inputMatrixes);
         }
         
-        public Oxyplot_teplo.ServiceReference1.OutputDate CulcTeploPosl(Oxyplot_teplo.ServiceReference1.InputDate inputMatrixes) {
+        public WpfApp.ServiceReference1.OutputDate CulcTeploPosl(WpfApp.ServiceReference1.InputDate inputMatrixes) {
             return base.Channel.CulcTeploPosl(inputMatrixes);
         }
         
-        public System.Threading.Tasks.Task<Oxyplot_teplo.ServiceReference1.OutputDate> CulcTeploPoslAsync(Oxyplot_teplo.ServiceReference1.InputDate inputMatrixes) {
+        public System.Threading.Tasks.Task<WpfApp.ServiceReference1.OutputDate> CulcTeploPoslAsync(WpfApp.ServiceReference1.InputDate inputMatrixes) {
             return base.Channel.CulcTeploPoslAsync(inputMatrixes);
         }
     }
