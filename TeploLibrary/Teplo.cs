@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TeploLibrary
@@ -9,7 +11,7 @@ namespace TeploLibrary
     public class Teplo
     {
         private ILogger _Logger;
-
+        Stopwatch timer = new Stopwatch();
         public Teplo(ILogger logger)
         {
             SetLogger(logger);
@@ -24,6 +26,8 @@ namespace TeploLibrary
         {
             _Logger = logger;
         }
+
+        
 
         public static T[][] ToJagged<T>(T[,] mArray)
         {
@@ -113,13 +117,18 @@ namespace TeploLibrary
 
         public double[,] PoslCulc(double[,] u, double time, double tau, double h)
         {
-            _Logger.Log("Запущен последовательный расчет ");
+            
+            _Logger.Log("nЗапущен последовательный расчет для размерности " + Convert.ToString(u.GetLength(0))+" на " + Convert.ToString(u.GetLength(1)));
+            _Logger.Log("Шаг по времени = " + Convert.ToString(tau));
+            _Logger.Log("Количество шагов = " + Convert.ToString(time/tau));
             int a = u.GetLength(0);
             int b = u.GetLength(1);
             double[,] unew = new double[a, b];
             double Eps = tau / (h * h);
             unew = u;
             double t0 = 0;
+
+            timer.Start();
             for (double t = t0 + tau; t <= time; t += tau)
             {
                 for (int i = 1; i < a - 1; i++)
@@ -134,9 +143,11 @@ namespace TeploLibrary
                     }
                 }
             }
+            timer.Stop();
             if (_Logger != null)
             {
-                _Logger.Log("Закончен последовательный расчет");
+                _Logger.Log("Закончен последовательный расчет через " + Convert.ToString(timer.ElapsedMilliseconds) + " мс\n\n");
+
             }
             return u;
         }
