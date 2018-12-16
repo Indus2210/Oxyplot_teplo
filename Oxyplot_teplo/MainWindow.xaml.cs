@@ -40,11 +40,26 @@ namespace Oxyplot_teplo
        
         InputDate inputdate = new InputDate();
         OutputDate outputDate = new OutputDate();
-        CulcServiceClient client = new CulcServiceClient();
+        
+        
+       CulcServiceClient client;
 
 
         void StartCulc(bool flag)
         {
+           //client = new CulcServiceClient();
+            
+            try {
+                client = new CulcServiceClient();
+            }
+            catch
+            {
+                if (client == null) {
+                    MessageBox.Show("Нет доспупа к сервису");
+                    return;
+                }
+                
+            }
             Pause_button.Content = "Пауза";
             Pause_button.IsEnabled = true;
             time = 10;
