@@ -120,13 +120,13 @@ namespace Teplo_WCF_Library
         public OutputDate3D CulcTeploPosl3D(InputDate3D inputDate)
         {
             OutputDate3D mass_data = new OutputDate3D();
-
+            ILogger log = new NLogAdapter();
             double[,,] array1 = ToMulti3D(inputDate.Mass_u);
 
             double h = inputDate.H;
             double time = inputDate.Time;
             double tau = inputDate.Tau;
-            Teplo teplo = new Teplo();
+            Teplo teplo = new Teplo(log);
 
             double[,,] array2 = teplo.PoslCulс3D(array1, time, tau, h);
 

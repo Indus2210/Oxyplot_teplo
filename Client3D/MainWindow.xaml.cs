@@ -25,9 +25,20 @@ namespace Client3D
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new ViewModel();
         }
 
+        public class ViewModel
+        {
+            public ViewModel()
+            {
+                /* Set default age */
+                this.Age = 200;
+            }
 
+            public int Age { get; set; }
+
+        }
 
         int n = 10;
 
@@ -118,7 +129,7 @@ namespace Client3D
             }
             Pause_button.Content = "Пауза";
             Pause_button.IsEnabled = true;
-            time = 0.5;
+            time = 1;
             tau = 0.1;
             h = 1;
             u = new double[n,n,n];
@@ -182,7 +193,7 @@ namespace Client3D
             if (flag)
             {
                 timer.Tick += Timer_Tick;
-                timer.Interval = new TimeSpan(0, 0, 1);
+                timer.Interval = new TimeSpan(0, 0, 5);
                 timer.Start();
             }
 

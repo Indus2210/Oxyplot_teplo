@@ -118,7 +118,7 @@ namespace TeploLibrary
         public double[,] PoslCulc(double[,] u, double time, double tau, double h)
         {
             
-            _Logger.Log("nЗапущен последовательный расчет для размерности " + Convert.ToString(u.GetLength(0))+" на " + Convert.ToString(u.GetLength(1)));
+            _Logger.Log("Запущен последовательный расчет для размерности " + Convert.ToString(u.GetLength(0))+" на " + Convert.ToString(u.GetLength(1)));
             _Logger.Log("Шаг по времени = " + Convert.ToString(tau));
             _Logger.Log("Количество шагов = " + Convert.ToString(time/tau));
             int a = u.GetLength(0);
@@ -144,16 +144,21 @@ namespace TeploLibrary
                 }
             }
             timer.Stop();
+            
             if (_Logger != null)
             {
                 _Logger.Log("Закончен последовательный расчет через " + Convert.ToString(timer.ElapsedMilliseconds) + " мс\n\n");
 
             }
+            timer.Reset();
             return u;
         }
 
         public double[,,] PoslCulс3D(double[,,] u, double time, double tau, double h)
         {
+            _Logger.Log("Запущен последовательный расчет для размерности " + Convert.ToString(u.GetLength(0)) + " х " + Convert.ToString(u.GetLength(1))+ " х " + Convert.ToString(u.GetLength(2)));
+            _Logger.Log("Шаг по времени = " + Convert.ToString(tau));
+            _Logger.Log("Количество шагов = " + Convert.ToString(time / tau));
             int a = u.GetLength(0);
             int b = u.GetLength(1);
             int c = u.GetLength(2);
@@ -161,6 +166,7 @@ namespace TeploLibrary
             double Eps = tau / (h * h);
             unew = u;
             double t0 = 0;
+            timer.Start();
             for (double t = t0 + tau; t <= time; t += tau)
             {
                 for (int i = 1; i < a - 1; i++)
@@ -179,19 +185,29 @@ namespace TeploLibrary
                     }
                 }
             }
+            timer.Stop();
+            
+            if (_Logger != null)
+            {
+                _Logger.Log("Закончен последовательный расчет через " + Convert.ToString(timer.ElapsedMilliseconds) + " мс\n\n");
 
+            }
+            timer.Reset();
             return u;
         }
 
         public double[,] ParalCulc(double[,] u, double time, double tau, double h)
         {
-            _Logger.Log("Запущен паралельный рассчет расчет");
+            _Logger.Log("Запущен паралельный расчет для размерности " + Convert.ToString(u.GetLength(0)) + " х " + Convert.ToString(u.GetLength(1)));
+            _Logger.Log("Шаг по времени = " + Convert.ToString(tau));
+            _Logger.Log("Количество шагов = " + Convert.ToString(time / tau));
             int a = u.GetLength(0);
             int b = u.GetLength(1);
             double[,] unew = new double[a, b];
             double Eps = tau / (h * h);
             unew = u;
             double t0 = 0;
+            timer.Start();
             for (double t = t0 + tau; t <= time; t += tau)
             {
                 for (int i = 1; i < a - 1; i++)
@@ -212,15 +228,22 @@ namespace TeploLibrary
                     }
                 }
             }
+            timer.Stop();
+           
             if (_Logger != null)
             {
-                _Logger.Log("Закончен паралельный расчет");
+                _Logger.Log("Закончен паралеллный расчет через " + Convert.ToString(timer.ElapsedMilliseconds) + " мс\n\n");
+
             }
+            timer.Reset();
             return u;
         }
 
         public double[,,] ЗDParalCulc(double[,,] u, double time, double tau, double h)
         {
+            _Logger.Log("nЗапущен паралеллный расчет для размерности " + Convert.ToString(u.GetLength(0)) + " х " + Convert.ToString(u.GetLength(1)) + " х " + Convert.ToString(u.GetLength(2)));
+            _Logger.Log("Шаг по времени = " + Convert.ToString(tau));
+            _Logger.Log("Количество шагов = " + Convert.ToString(time / tau));
             int a = u.GetLength(0);
             int b = u.GetLength(1);
             int c = u.GetLength(2);
@@ -228,6 +251,7 @@ namespace TeploLibrary
             double Eps = tau / (h * h);
             unew = u;
             double t0 = 0;
+            timer.Start();
             for (double t = t0 + tau; t <= time; t += tau)
             {
                 for (int i = 1; i < a - 1; i++)
@@ -249,7 +273,14 @@ namespace TeploLibrary
                     }
                 }
             }
+            timer.Stop();
+            
+            if (_Logger != null)
+            {
+                _Logger.Log("Закончен паралеллный расчет через " + Convert.ToString(timer.ElapsedMilliseconds) + " мс\n\n");
 
+            }
+            timer.Reset();
             return u;
         }
 

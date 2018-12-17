@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Client3D.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
         xmlns:h ="http://helix-toolkit.org/wpf"
         Title="Теплопроводность Шагушин A.C., Попова Ю.И. 1-46м" Height="550" Width="900" ResizeMode="NoResize">
     <Grid>
@@ -15,7 +16,8 @@
             <TextBox Canvas.Left="300" Canvas.Bottom="10" x:Name="BottomGran" Width="100" Text="100"/>
 
             <TextBlock Text="Введите правую границу" Canvas.Top="200" Canvas.Left="560"/>
-            <TextBox Canvas.Left="580" Canvas.Top="220" x:Name="RightGran" Width="100" Text="300"/>
+            <TextBox Canvas.Left="580" Canvas.Top="220" x:Name="RightGran" Width="100" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}"/>
+
 
             <TextBlock Text="Введите температуру пластины"/>
             <TextBox x:Name="TempPlan" Width="100" Text="10" Canvas.Top="20"/>
