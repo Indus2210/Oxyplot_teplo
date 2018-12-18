@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TeploLibrary;
 using System.Diagnostics;
 
@@ -58,7 +57,7 @@ namespace Test_Teplo
         public void Test_Rigth_Work_3D()
         {
             Teplo teplo = new Teplo();
-            int n = 5;
+            int n = 10;
             double time = 10;
             double tau = 0.01;
             double h = 1;
@@ -81,7 +80,7 @@ namespace Test_Teplo
             unew = teplo.PoslCulс3D(u, time, tau, h);
 
             bool flag = false;
-            if (unew[0, 0, 0] < unew[n - 1, n - 1, n - 1])
+            if (unew[1, 1, 1] < unew[n - 2, n - 2, n - 2])
 
             {
                 flag = true;

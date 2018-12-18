@@ -278,7 +278,6 @@ namespace TeploLibrary
             if (_Logger != null)
             {
                 _Logger.Log("Закончен паралеллный расчет через " + Convert.ToString(timer.ElapsedMilliseconds) + " мс\n\n");
-
             }
             timer.Reset();
             return u;
